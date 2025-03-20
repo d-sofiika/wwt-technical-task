@@ -6,7 +6,7 @@ import { Box, Button } from '@chakra-ui/react'
 import { FilterModal } from '@components/FilterModal/FilterModal'
 
 export const HomePage = () => {
-	const [isOpen, setIsOpen] = useState(true)
+	const [isOpen, setIsOpen] = useState(false)
 	const { t } = useTranslation('filter')
 	const onOpen = () => setIsOpen(true)
 	return (

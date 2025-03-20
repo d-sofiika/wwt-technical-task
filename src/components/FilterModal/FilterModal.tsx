@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
+	Box,
 	Button,
 	Checkbox,
 	Modal,
@@ -46,7 +47,7 @@ export const FilterModal = ({ isOpen, setIsOpen }: FilterModalProps) => {
 		<Modal
 			isOpen={isOpen}
 			onClose={onClose}
-			size="lg"
+			size="xl"
 		>
 			<ModalOverlay />
 			<ModalContent p={10}>
@@ -63,41 +64,74 @@ export const FilterModal = ({ isOpen, setIsOpen }: FilterModalProps) => {
 						size="lg"
 						top={0}
 						right={0}
+						border="none"
+						variant="ghost"
 					/>
 				</ModalHeader>
 
-				<ModalBody>
+				<ModalBody p={0}>
 					{filterData.map(item => (
-						<div key={item.id}>
+						<Box
+							key={item.id}
+							paddingBottom={8}
+							borderBottom="1px solid #AAAAAA"
+						>
 							<Text
-								mb="24px"
-								mt="32px"
+								mb={6}
+								mt={8}
 								textStyle="headline-5"
 							>
 								{item.name}
 							</Text>
 							<SimpleGrid
 								columns={[2, null, 3]}
-								gap="16px"
+								gap={4}
 							>
 								{item.options.map(option => (
 									<Checkbox
 										key={option.id}
 										defaultChecked={false}
+										sx={{
+											'.chakra-checkbox__control': {
+												borderRadius: '4px',
+												border: `${0.5} solid #31393C`
+											},
+											'.chakra-checkbox__label': {
+												ml: '16px'
+											}
+										}}
+										size="lg"
 									>
 										{option.name}
 									</Checkbox>
 								))}
 							</SimpleGrid>
-						</div>
+						</Box>
 					))}
 				</ModalBody>
-				<ModalFooter>
-					<Button colorScheme="brand">{t('apply')}</Button>
+				<ModalFooter
+					display="flex"
+					alignItems="center"
+					justifyContent="center"
+					p={0}
+					mt={8}
+				>
 					<Button
-						variant="outline"
-						mr={3}
+						paddingRight="70px"
+						paddingLeft="70px"
+						size="lg"
+						colorScheme="brand"
+					>
+						{t('apply')}
+					</Button>
+					<Button
+						position="absolute"
+						variant="ghost"
+						textDecoration="underline"
 						onClick={onClose}
+						right={10}
+						border="none"
+						color="primary.100"
 					>
 						{t('clear')}
 					</Button>
