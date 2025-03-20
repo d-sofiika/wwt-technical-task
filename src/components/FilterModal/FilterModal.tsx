@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import {
 	Box,
 	Button,
-	Checkbox,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -19,6 +18,7 @@ import {
 import { ConfirmModal } from '@components/ConfirmModal/ConfirmModal'
 
 import data from '../../temp/filterData.json'
+import { FilterCheckbox } from './FilterCheckbox'
 import {
 	FilterItem,
 	FilterModalProps,
@@ -43,6 +43,7 @@ export const FilterModal = ({
 		setIsConfirmOpen(true)
 	}
 	const confirmApply = () => {
+		localStorage.setItem('filters', JSON.stringify(selectedFilters))
 		setFilters(selectedFilters)
 		setIsConfirmOpen(false)
 		onClose()
@@ -58,7 +59,12 @@ export const FilterModal = ({
 
 	useEffect(() => {
 		if (isOpen) {
-			setSelectedFilters(initialFilters)
+			const savedFilters = localStorage.getItem('filters')
+			if (savedFilters) {
+				setSelectedFilters(JSON.parse(savedFilters))
+			} else {
+				setSelectedFilters(initialFilters)
+			}
 		}
 	}, [isOpen, initialFilters])
 
@@ -102,7 +108,6 @@ export const FilterModal = ({
 						<Text textStyle="headline-2">{t('titleFilter')}</Text>
 						<ModalCloseButton
 							size="lg"
-							top={0}
 							right={0}
 							border="none"
 							variant="ghost"
@@ -127,30 +132,11 @@ export const FilterModal = ({
 									columns={[2, null, 3]}
 									gap={4}
 								>
-									{item.options.map(option => (
-										<Checkbox
-											key={option.id}
-											defaultChecked={false}
-											isChecked={
-												selectedFilters
-													.find(finded => finded.id === item.id)
-													?.selectedOptions.includes(option.id) || false
-											}
-											onChange={() => handleCheckboxChange(item.id, option.id)}
-											sx={{
-												'.chakra-checkbox__control': {
-													borderRadius: '4px',
-													border: `${0.5} solid #31393C`
-												},
-												'.chakra-checkbox__label': {
-													ml: '16px'
-												}
-											}}
-											size="lg"
-										>
-											{option.name}
-										</Checkbox>
-									))}
+									<FilterCheckbox
+										filter={item}
+										selectedFilters={selectedFilters}
+										onChange={handleCheckboxChange}
+									/>
 								</SimpleGrid>
 							</Box>
 						))}

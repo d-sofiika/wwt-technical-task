@@ -29,33 +29,48 @@ export const ConfirmModal = ({
 		<Modal
 			isOpen={isOpen}
 			onClose={onClose}
+			size="xl"
 		>
 			<ModalOverlay />
-			<ModalContent>
-				<ModalHeader borderBottom="none">
+			<ModalContent
+				alignItems="center"
+				p={8}
+			>
+				<ModalHeader
+					display="flex"
+					alignItems="center"
+					justifyContent="center"
+					borderBottom="none"
+					p={0}
+					mb="120px"
+					position="relative"
+					w="100%"
+				>
 					<Text textStyle="headline-2"> {t('confirmTitle')}</Text>
-
 					<ModalCloseButton
 						size="lg"
-						top={0}
 						right={0}
 						border="none"
 						variant="ghost"
 					/>
 				</ModalHeader>
-				<ModalFooter>
+				<ModalFooter
+					p={0}
+					gap={8}
+				>
 					<Button
-						paddingRight="70px"
-						paddingLeft="70px"
+						variant="outline"
 						size="lg"
-						colorScheme="brand"
+						minW="280px"
 						onClick={onCancel}
 					>
 						{t('noConfirm')}
 					</Button>
 					<Button
-						variant="outline"
-						ml={3}
+						paddingRight="70px"
+						paddingLeft="70px"
+						size="lg"
+						colorScheme="brand"
 						onClick={onConfirm}
 					>
 						{t('yesConfirm')}
