@@ -96,23 +96,23 @@ export const FilterModal = ({
 				size="xl"
 			>
 				<ModalOverlay />
-				<ModalContent p={10}>
+				<ModalContent p={8}>
 					<ModalHeader
 						display="flex"
 						alignItems="center"
 						justifyContent="center"
 						p={0}
 						maxH={12}
-						position="relative"
 					>
 						<Text textStyle="headline-2">{t('titleFilter')}</Text>
-						<ModalCloseButton
-							size="lg"
-							right={0}
-							border="none"
-							variant="ghost"
-						/>
 					</ModalHeader>
+					<ModalCloseButton
+						size="lg"
+						top={9}
+						right={8}
+						border="none"
+						variant="ghost"
+					/>
 
 					<ModalBody p={0}>
 						{filterData.map(item => (

@@ -47,13 +47,14 @@ export const ConfirmModal = ({
 					w="100%"
 				>
 					<Text textStyle="headline-2"> {t('confirmTitle')}</Text>
-					<ModalCloseButton
-						size="lg"
-						right={0}
-						border="none"
-						variant="ghost"
-					/>
 				</ModalHeader>
+				<ModalCloseButton
+					size="lg"
+					top={9}
+					right={8}
+					border="none"
+					variant="ghost"
+				/>
 				<ModalFooter
 					p={0}
 					gap={8}
