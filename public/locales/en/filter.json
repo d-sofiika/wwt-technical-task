@@ -1,4 +1,9 @@
 {"filters": "Filters",
 "titleFilter": "Filter",
 "apply":"Apply",
-"clear":"Clear all parameters"}
+"clear":"Clear all parameters",
+"noSelected":"No filters selected",
+"confirmTitle":"Do you want to apply new filter",
+"noConfirm":"Use old filter",
+"yesConfirm":"Apply new filter"
+}
